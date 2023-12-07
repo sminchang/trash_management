@@ -8,8 +8,8 @@ SoftwareSerial Serial1(2, 3); // RX, TX (맨끝핀이 3번)
 
 Wifi::Wifi() {}
 
-char ssid[] = "U+Net0FE4";
-char pass[] = "#93AD9319P";
+char ssid[] = "ian iPhone";
+char pass[] = "11223344";
 int status = WL_IDLE_STATUS;
 WiFiEspServer server(80);
 

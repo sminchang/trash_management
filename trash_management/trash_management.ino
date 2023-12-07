@@ -27,19 +27,18 @@ int ammonia;
 int capacity;
 
 AirQuality AirQuality(ao, fan);
-//Ultrasonic Ultrasonic(trig, echo, red, green, blue);
-//Wifi Wifi;
+Ultrasonic Ultrasonic(trig, echo, red, green, blue);
+Wifi Wifi;
 
 void setup() {
   Serial.begin(9600);
   AirQuality.begin();
-  //Ultrasonic.begin();
-  //Wifi.begin();
+  Ultrasonic.begin();
+  Wifi.begin();
 }
 
 void loop() {
   ammonia = AirQuality.update();
-  //capacity = Ultrasonic.update();
-  Serial.println(ammonia);
-  //Wifi.update(ammonia, capacity); 
+  capacity = Ultrasonic.update();
+  Wifi.update(ammonia, capacity); 
 }

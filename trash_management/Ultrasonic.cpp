@@ -46,17 +46,17 @@ int Ultrasonic::update() {
 
   // 데드존 범위 내에서는 LED를 제어
   if (smoothedDistance > 2 && smoothedDistance <= 200) {
-    if (smoothedDistance > 80) {
+    if (smoothedDistance > 40) {
       analogWrite(RED, 0);
       analogWrite(GREEN, 255);
       analogWrite(BLUE, 0);
       //delay(1000);
-    } else if (smoothedDistance >= 30 && smoothedDistance <= 80) {
+    } else if (smoothedDistance >= 15 && smoothedDistance <= 40) {
       analogWrite(RED, 255);
       analogWrite(GREEN, 255);
       analogWrite(BLUE, 0);
       //delay(1000);
-    } else if (smoothedDistance < 30) {
+    } else if (smoothedDistance < 15) {
       analogWrite(RED, 255);
       analogWrite(GREEN, 0);
       analogWrite(BLUE, 0);

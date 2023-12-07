@@ -1,7 +1,6 @@
 /*RX, TX를 매개변수로 받아오면 HTML 파일을 못불러와서 모듈 내부에서 지정했다.*/
 /*통신 모듈간 동기화 로직을 넣지 않아 동시에 실행시키면 동시성 문제가 발생한다.
-아두이노를 하나만 실행시키고 연결된 후 3초정도 지나서
-다음 아두이노를 실행시켜야 문제가 안생긴다.*/
+하나 이상 아두이노 사용 시 실행도 순차적으로 시키고, 입력도 순차적으로 해야 문제가 최소화된다.*/
 
 #include "Wifi.h"
 #include "WiFiEsp.h"
@@ -63,7 +62,7 @@ void Wifi::update(int ammonia, int capacity) {
 
           client.print("<!DOCTYPE HTML>\r\n");
           client.print("<html>\r\n");
-          client.print("<h1>일립관 B01호</h1>\r\n");
+          client.print("<h1>갈멜관 305호</h1>\r\n");
           client.print("<style>\r\n");
           client.print(".n1 { color: red; }\r\n");
           client.print(".n2 { color: green; }\r\n");
@@ -82,7 +81,7 @@ void Wifi::update(int ammonia, int capacity) {
           }
 
           //잔여 용량이 기준치 이상이면 해당 문구를 초록색으로 출력해주는 로직
-          if (capacity < 30) {
+          if (capacity < 15) {
             client.print("<div class='n2'>잔여 용량: ");
             client.print(capacity);
             client.print("<br></div>\r\n");

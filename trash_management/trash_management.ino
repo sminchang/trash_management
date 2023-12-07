@@ -6,6 +6,7 @@
   접속하는 브라우저가 사용하는 wifi와 esp 모듈을 연결한 wifi가 같아야한다.
   그렇지 않으면 NAT 사용 때문에 IP가 꼬이는 문제가 생기는 것 같다.
 */
+/*핫스팟 틀어놓고 핫스팟 연결 UI 띄워놔야 정상 접속된다. 안그러면 버퍼링 걸린다.*/
 
 #include "AirQuality.h"
 #include "Ultrasonic.h"

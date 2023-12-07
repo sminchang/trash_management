@@ -60,7 +60,7 @@ void Wifi::update(int ammonia, int capacity) {
 
           client.print("<!DOCTYPE HTML>\r\n");
           client.print("<html>\r\n");
-          client.print("<h1>갈멜관 305호</h1>\r\n");
+          client.print("<h1>일립관 B01호</h1>\r\n");
           client.print("<style>\r\n");
           client.print(".n1 { color: red; }\r\n");
           client.print(".n2 { color: green; }\r\n");

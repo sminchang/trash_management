@@ -9,7 +9,6 @@ private:
   int GREEN;
   int BLUE;
   float smoothedDistance;
-  float previousValidDistance;
   int deadZoneLowerLimit;
   int deadZoneUpperLimit;
 

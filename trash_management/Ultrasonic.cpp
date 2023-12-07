@@ -8,7 +8,6 @@ Ultrasonic::Ultrasonic(int trig, int echo, int red, int green, int blue) {
   GREEN = green;
   BLUE = blue;
   smoothedDistance = 0;
-  previousValidDistance = 0;
   deadZoneLowerLimit = 10;
   deadZoneUpperLimit = 200;
 }

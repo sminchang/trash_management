@@ -1,6 +1,9 @@
 /*RX, TX를 매개변수로 받아오면 HTML 파일 로딩이 안되서 모듈 내부에서 지정했다.*/
+
 /*통신 모듈간 동기화 로직을 넣지 않아 동시에 실행시키면 동시성 문제가 발생한다.
-하나 이상 아두이노 사용 시 실행도 순차적으로 시키고, 입력도 순차적으로 해야 문제가 최소화된다.*/
+특히 입력값을 동시에 바꿔주면 에러가 난다. 근본적인 문제를 해결하지는 못했으나
+updateInterval 설정을 통해 아두이노마다 업데이트 주기를 다르게 설정해주면
+동시에 입력값을 바꾸는 경우를 제외하고 잘 동작한다...*/
 
 #include "Wifi.h"
 #include "WiFiEsp.h"
@@ -14,6 +17,8 @@ char ssid[] = "ian iPhone";
 char pass[] = "11223344";
 int status = WL_IDLE_STATUS;
 WiFiEspServer server(80);
+unsigned long updateInterval = 1550; //업데이트 주기, 쓰레기통마다 다르게 설정해서 데드락 문제를 피해야한다.
+unsigned long lastUpdateTime;
 
 void Wifi::begin() {
   Serial1.begin(9600);
@@ -38,7 +43,8 @@ void Wifi::begin() {
 void Wifi::update(int ammonia, int capacity) {
     // listen for incoming clients
   WiFiEspClient client = server.available();
-  if(client) {
+   if(client && (millis() - lastUpdateTime > updateInterval)) {
+    lastUpdateTime = millis();
     Serial.println("New client");
     // an http request ends with a blank line
     boolean currentLineIsBlank = true;
@@ -62,7 +68,7 @@ void Wifi::update(int ammonia, int capacity) {
 
           client.print("<!DOCTYPE HTML>\r\n"
           "<html>\r\n"
-          "<h1>일립관 B01호</h1>\r\n"
+          "<h1>일립관 B01호</h1>\r\n" //쓰레기통 위치마다 다르게 설정하기
           "<style>\r\n"
           ".n1 { color: red; }\r\n"
           ".n2 { color: green; }\r\n"

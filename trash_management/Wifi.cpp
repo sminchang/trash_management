@@ -60,37 +60,34 @@ void Wifi::update(int ammonia, int capacity) {
             "Refresh: 20\r\n"        // refresh the page automatically every 20 sec
             "\r\n");
 
-          client.print("<!DOCTYPE HTML>\r\n");
-          client.print("<html>\r\n");
-          client.print("<h1>갈멜관 305호</h1>\r\n");
-          client.print("<style>\r\n");
-          client.print(".n1 { color: red; }\r\n");
-          client.print(".n2 { color: green; }\r\n");
-          client.print(".n3 { color: black; }\r\n");
-          client.print("</style>\r\n");
+          client.print("<!DOCTYPE HTML>\r\n"
+          "<html>\r\n"
+          "<h1>일립관 B01호</h1>\r\n"
+          "<style>\r\n"
+          ".n1 { color: red; }\r\n"
+          ".n2 { color: green; }\r\n"
+          ".n3 { color: black; }\r\n"
+          "</style>\r\n");
 
           //암모니아가 일정 농도 이상되면 해당 문구를 빨간색으로 출력해주는 로직
           if(ammonia >= 70) {
             client.print("<div class='n1'>암모니아 농도: ");
-            client.print(ammonia);
-            client.print("<br></div>\r\n");
           } else{
             client.print("<div class='n3'>암모니아 농도: ");
-            client.print(ammonia);
-            client.print("<br></div>\r\n");
           }
+          client.print(ammonia);
+          client.print("<br></div>\r\n");
 
           //잔여 용량이 기준치 이상이면 해당 문구를 초록색으로 출력해주는 로직
           if (capacity < 15) {
             client.print("<div class='n2'>잔여 용량: ");
-            client.print(capacity);
-            client.print("<br></div>\r\n");
+            
           } else{
             client.print("<div class='n3'>잔여 용량: ");
-            client.print(capacity);
-            client.print("<br></div>\r\n");
           }
-          client.print("</html>\r\n");
+          client.print(capacity);
+          client.print("<br></div>\r\n"
+          "</html>\r\n");
           break;
         }
         if(c == '\n') {
